@@ -5,15 +5,27 @@ import Input from '../components/Input';
 const Form = () => {
   const component = document.createElement('div');
   component.className = 'form';
-  const test = (value:string) => console.log(value);
+  const test = (value: string) => console.log(value);
   const test2 = () => console.log('btn');
 
   const createCarWrap = document.createElement('div');
-  createCarWrap.className = 'form__wrapper';
+  createCarWrap.className = 'form__create-wrapper';
 
-  createCarWrap.append(Input({ onChange: test }), ColorSelect({ onChange: test }), Button({ onClick: test2, title: 'create' }));
+  const updateCarWrap = document.createElement('div');
+  updateCarWrap.className = 'form__update-wrapper';
 
-  component.append(createCarWrap);
+  createCarWrap.append(
+    Input({ onChange: test }),
+    ColorSelect({ onChange: test }),
+    Button({ onClick: test2, title: 'create' }),
+  );
+  updateCarWrap.append(
+    Input({ onChange: test }),
+    ColorSelect({ onChange: test }),
+    Button({ onClick: test2, title: 'update' }),
+  );
+
+  component.append(createCarWrap, updateCarWrap);
 
   return component;
 };
