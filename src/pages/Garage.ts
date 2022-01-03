@@ -1,3 +1,4 @@
+import Navbar from '../modules/Navbar';
 import changePageTitle from '../utils/change-page-title';
 
 const Garage = () => {
@@ -5,6 +6,7 @@ const Garage = () => {
 
   const component = document.createElement('div');
   component.textContent = 'Garage';
+  component.append(Navbar());
   return component;
 };
 
