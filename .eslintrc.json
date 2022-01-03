@@ -17,6 +17,17 @@
     "rules": {
         "linebreak-style": 0,
         "guard-for-in": 0,
-        "quotes": [2, "single", { "avoidEscape": true }]
+        "quotes": [
+            2,
+            "single",
+            {
+                "avoidEscape": true
+            }
+        ],
+        "no-restricted-globals": 0,
+        "import/no-unresolved": 0,
+        "import/extensions": 0,
+        "no-useless-constructor": 0,
+        "no-unused-vars": 0
     }
 }
