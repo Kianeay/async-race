@@ -23,7 +23,7 @@ export default class Controller {
       false,
     );
 
-    navigate('main');
+    navigate('garage');
   }
 
   changePage(page: string) {
