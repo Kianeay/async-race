@@ -119,19 +119,36 @@ ul {
   display: -ms-flexbox;
   display: flex;
   gap: 10px;
-  margin: 30px 0;
+  margin-top: 30px;
+  margin-bottom: 10px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
-.cars__btn-container {
-  width: 150px;
+.cars__btn-container .button {
+  width: 50px;
+  height: 20px;
+}
+
+.cars__btn-container .button:first-child {
+  margin-right: 10px;
 }
 
 .cars__container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  border-bottom: dotted gray 5px;
+  height: 50px;
+}
+
+.cars__race-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  padding-left: 10px;
 }
 /*# sourceMappingURL=style.css.map */
