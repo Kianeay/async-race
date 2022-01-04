@@ -6,7 +6,7 @@ const Garage = () => {
   changePageTitle('Garage');
 
   const component = document.createElement('div');
-  component.textContent = 'Garage';
+  component.className = 'garage';
   component.append(Navbar(), Form());
   return component;
 };

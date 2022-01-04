@@ -1,0 +1,17 @@
+.form {
+  &__color {
+    width: 30px;
+    height: 30px;
+    outline: none;
+    border: none;
+  }
+  &__wrapper {
+    display: flex;
+    margin: 10px;
+    gap: 10px;
+    max-width: 300px;
+  }
+  & .button {
+    flex-grow: 1;
+  }
+}

@@ -3,11 +3,13 @@ import navigate from '../Router/Router';
 const links = ['garage', 'winners'];
 
 const Navbar = () => {
-  const component = document.createElement('div');
+  const component = document.createElement('nav');
+  component.className = 'nav';
 
   const navLinks = links.map((el) => {
     const link = document.createElement('button');
-    link.textContent = el;
+    link.textContent = `To ${el}`;
+    link.className = 'button nav__btn';
     link.addEventListener('click', () => {
       navigate(el);
     });

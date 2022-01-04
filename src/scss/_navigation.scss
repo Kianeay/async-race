@@ -1,0 +1,14 @@
+.nav {
+  max-width: 300px;
+  display: flex;
+  margin: 30px 10px;
+  &__btn {
+    flex-grow: 1;
+    gap: 10px;
+    background-color: $grey;
+
+    &:first-child {
+      margin-right: 10px;
+    }
+  }
+}

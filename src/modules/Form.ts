@@ -9,10 +9,13 @@ const Form = () => {
   const test2 = () => console.log('btn');
 
   const createCarWrap = document.createElement('div');
-  createCarWrap.className = 'form__create-wrapper';
+  createCarWrap.className = 'form__wrapper';
 
   const updateCarWrap = document.createElement('div');
-  updateCarWrap.className = 'form__update-wrapper';
+  updateCarWrap.className = 'form__wrapper';
+
+  const btnCarWrap = document.createElement('div');
+  btnCarWrap.className = 'form__wrapper';
 
   createCarWrap.append(
     Input({ onChange: test }),
@@ -24,8 +27,13 @@ const Form = () => {
     ColorSelect({ onChange: test }),
     Button({ onClick: test2, title: 'update' }),
   );
+  btnCarWrap.append(
+    Button({ onClick: test2, title: 'race' }),
+    Button({ onClick: test2, title: 'reset' }),
+    Button({ onClick: test2, title: 'generate cars' }),
+  );
 
-  component.append(createCarWrap, updateCarWrap);
+  component.append(createCarWrap, updateCarWrap, btnCarWrap);
 
   return component;
 };
