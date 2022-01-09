@@ -7,7 +7,7 @@
         "_global.scss",
         "_form.scss",
         "_navigation.scss",
-        "car.scss"
+        "_car.scss"
     ],
     "names": [],
     "file": "style.css"
