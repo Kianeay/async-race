@@ -1,3 +1,4 @@
+import { getCarApi, ICreateParams } from '../api';
 import Car from '../components/Car';
 
 interface ICarsLst {
@@ -18,8 +19,17 @@ const CarsList = ({ totalCarsCount = 13 }: ICarsLst) => {
   const list = document.createElement('ul');
   list.className = 'cars__list';
 
-  list.append(Car({ name: 'aston martin', color: 'pink' }));
+  const getCars = async () => {
+    const carsArr = await getCarApi();
+    console.log(carsArr);
 
+    const carsItems = carsArr.map((item: ICreateParams) => {
+      console.log(item);
+      return Car(item);
+    });
+    list.append(...carsItems);
+  };
+  getCars();
   component.append(title, carsPage, list);
 
   return component;

@@ -1,5 +1,5 @@
 const BASE_URL = 'http://127.0.0.1:3000/';
-interface ICreateParams {
+export interface ICreateParams {
   name: string;
   color: string;
 }
@@ -16,7 +16,7 @@ export const createCarApi = async (params: ICreateParams) => {
 export const getCarApi = async () => {
   const response = await fetch(`${BASE_URL}garage`);
   const data = await response.json();
-  console.log(data);
+  return data;
 };
 
 export const updateCarApi = async () => {};
