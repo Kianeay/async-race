@@ -1,6 +1,7 @@
 .cars {
   &__icon {
     width: 100px;
+    display: flex;
   }
 
   &__header {
@@ -31,5 +32,12 @@
     display: flex;
     align-self: flex-end;
     padding-left: 10px;
+    flex-grow: 1;
+    justify-content: space-between;
+  }
+
+  &__flag {
+    width: 80px;
+    padding-right: 40px;
   }
 }
