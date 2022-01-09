@@ -16,6 +16,7 @@ export const createCarApi = async (params: ICreateParams) => {
 export const getCarApi = async () => {
   const response = await fetch(`${BASE_URL}garage`);
   const data = await response.json();
+  console.log(data);
 };
 
 export const updateCarApi = async () => {};

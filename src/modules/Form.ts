@@ -2,6 +2,7 @@ import { createCarApi, getCarApi } from '../api';
 import Button from '../components/Button';
 import ColorSelect from '../components/ColorSelect';
 import Input from '../components/Input';
+import createRandomCar from '../utils/create-random-car';
 
 const Form = () => {
   const carState = {
@@ -18,9 +19,15 @@ const Form = () => {
   };
 
   const createCar = async () => {
-    console.log(carState);
     await createCarApi(carState);
     getCarApi();
+  };
+
+  const generateCars = () => {
+    for (let i = 0; i < 100; i += 1) {
+      const car = createRandomCar();
+      createCarApi(car);
+    }
   };
 
   const createCarWrap = document.createElement('div');
@@ -45,7 +52,7 @@ const Form = () => {
   btnCarWrap.append(
     Button({ onClick: createCar, title: 'race' }),
     Button({ onClick: createCar, title: 'reset' }),
-    Button({ onClick: createCar, title: 'generate cars' }),
+    Button({ onClick: generateCars, title: 'generate cars' }),
   );
 
   component.append(createCarWrap, updateCarWrap, btnCarWrap);
