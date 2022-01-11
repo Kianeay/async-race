@@ -1,13 +1,16 @@
+import { removeCarApi } from '../api';
+import createDispatchEvent from '../utils/dispatch-event';
 import moveCar from '../utils/move-car';
 import Button from './Button';
 import CarIcon from './CarIcon';
 import FlagIcon from './FlagIcon';
 
-interface ICar {
+export interface ICar {
   name: string;
   color: string;
+  id: number;
 }
-const Car = ({ name, color }: ICar) => {
+const Car = ({ name, color, id }: ICar) => {
   const component = document.createElement('li');
   component.className = 'cars__item';
 
@@ -19,9 +22,15 @@ const Car = ({ name, color }: ICar) => {
   carName.textContent = name;
   carName.className = 'cars__name';
 
+  const removeCar = async () => {
+    console.log(id);
+    await removeCarApi(id);
+    createDispatchEvent('app:updateCarsList');
+  };
+
   itemHeader.append(
     Button({ onClick: test2, title: 'select' }),
-    Button({ onClick: test2, title: 'remove' }),
+    Button({ onClick: removeCar, title: 'remove' }),
     carName,
   );
 

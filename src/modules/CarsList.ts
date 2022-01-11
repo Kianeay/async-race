@@ -1,5 +1,5 @@
 import { getCarApi, ICreateParams } from '../api';
-import Car from '../components/Car';
+import Car, { ICar } from '../components/Car';
 
 interface ICarsLst {
   totalCarsCount: number;
@@ -24,7 +24,7 @@ const CarsList = ({ totalCarsCount = 13 }: ICarsLst) => {
     const carsArr = await getCarApi();
     console.log(carsArr);
 
-    const carsItems = carsArr.map((item: ICreateParams) => {
+    const carsItems = carsArr.map((item: ICar) => {
       console.log(item);
       return Car(item);
     });
@@ -32,7 +32,7 @@ const CarsList = ({ totalCarsCount = 13 }: ICarsLst) => {
     list.append(...carsItems);
   };
   getCars();
-  window.addEventListener('app:createNewCar', getCars);
+  window.addEventListener('app:updateCarsList', getCars);
   component.append(title, carsPage, list);
 
   return component;

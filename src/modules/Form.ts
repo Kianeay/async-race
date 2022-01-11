@@ -25,7 +25,7 @@ const Form = () => {
   const createCar = async () => {
     await createCarApi(carState);
     // await getCarApi();
-    createDispatchEvent('app:createNewCar');
+    createDispatchEvent('app:updateCarsList');
   };
 
   const generateCars = () => {
@@ -33,7 +33,7 @@ const Form = () => {
       const car = createRandomCar();
       createCarApi(car);
     }
-    createDispatchEvent('app:createNewCar');
+    createDispatchEvent('app:updateCarsList');
   };
 
   const createCarWrap = document.createElement('div');

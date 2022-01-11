@@ -1,3 +1,5 @@
+import { ICar } from '../components/Car';
+
 const BASE_URL = 'http://127.0.0.1:3000/';
 
 export interface ICreateParams {
@@ -17,8 +19,14 @@ export const createCarApi = async (params: ICreateParams) => {
 
 export const getCarApi = async () => {
   const response = await fetch(`${BASE_URL}garage`);
-  const data = await response.json();
+  const data: ICar[] = await response.json();
   return data;
+};
+
+export const removeCarApi = async (id: number) => {
+  const response = await fetch(`${BASE_URL}garage/${id}`, {
+    method: 'DELETE',
+  });
 };
 
 export const updateCarApi = async () => {};
