@@ -1,4 +1,4 @@
-import { getCarApi, ICreateParams } from '../api';
+import { getCarsListApi, ICreateParams } from '../api';
 import Car, { ICar } from '../components/Car';
 
 interface ICarsLst {
@@ -21,7 +21,7 @@ const CarsList = ({ totalCarsCount = 13 }: ICarsLst) => {
   list.className = 'cars__list';
 
   const getCars = async () => {
-    const carsArr = await getCarApi();
+    const carsArr = await getCarsListApi();
     console.log(carsArr);
 
     const carsItems = carsArr.map((item: ICar) => {
@@ -32,7 +32,7 @@ const CarsList = ({ totalCarsCount = 13 }: ICarsLst) => {
     list.append(...carsItems);
   };
   getCars();
-  window.addEventListener('app:updateCarsList', getCars);
+  window.addEventListener('app:garage:updateCarsList', getCars);
   component.append(title, carsPage, list);
 
   return component;

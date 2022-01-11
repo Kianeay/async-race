@@ -16,20 +16,23 @@ const Car = ({ name, color, id }: ICar) => {
 
   const itemHeader = document.createElement('div');
   itemHeader.className = 'cars__header';
-  const test2 = () => console.log('btn');
 
   const carName = document.createElement('span');
   carName.textContent = name;
   carName.className = 'cars__name';
 
   const removeCar = async () => {
-    console.log(id);
     await removeCarApi(id);
-    createDispatchEvent('app:updateCarsList');
+    createDispatchEvent('app:garage:updateCarsList');
+  };
+
+  const selectCar = async () => {
+    localStorage.setItem('currentCarId', `${id}`);
+    createDispatchEvent('app:garage:selectCar');
   };
 
   itemHeader.append(
-    Button({ onClick: test2, title: 'select' }),
+    Button({ onClick: selectCar, title: 'select' }),
     Button({ onClick: removeCar, title: 'remove' }),
     carName,
   );
@@ -52,7 +55,7 @@ const Car = ({ name, color, id }: ICar) => {
   btnContainer.className = 'cars__btn-container';
   btnContainer.append(
     Button({ onClick: startMove, title: 'A' }),
-    Button({ onClick: test2, title: 'B' }),
+    Button({ onClick: selectCar, title: 'B' }),
   );
 
   raceContainer.append(car, flag);

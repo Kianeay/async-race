@@ -17,7 +17,7 @@ export const createCarApi = async (params: ICreateParams) => {
   });
 };
 
-export const getCarApi = async () => {
+export const getCarsListApi = async () => {
   const response = await fetch(`${BASE_URL}garage`);
   const data: ICar[] = await response.json();
   return data;
@@ -29,4 +29,16 @@ export const removeCarApi = async (id: number) => {
   });
 };
 
-export const updateCarApi = async () => {};
+export const updateCarApi = async (id: number, params: ICreateParams) => {
+  const response = await fetch(`${BASE_URL}garage/${id}`, {
+    headers: { 'Content-Type': 'application/json' },
+    method: 'PUT',
+    body: JSON.stringify(params),
+  });
+};
+
+export const getCarApi = async (id: number) => {
+  const response = await fetch(`${BASE_URL}garage/${id}`);
+  const data: ICar = await response.json();
+  return data;
+};

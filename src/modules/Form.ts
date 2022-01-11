@@ -1,4 +1,4 @@
-import { createCarApi, getCarApi } from '../api';
+import { createCarApi, getCarApi, getCarsListApi, updateCarApi } from '../api';
 import Button from '../components/Button';
 import ColorSelect from '../components/ColorSelect';
 import Input from '../components/Input';
@@ -24,8 +24,8 @@ const Form = () => {
 
   const createCar = async () => {
     await createCarApi(carState);
-    // await getCarApi();
-    createDispatchEvent('app:updateCarsList');
+    // await getCarsListApi();
+    createDispatchEvent('app:garage:updateCarsList');
   };
 
   const generateCars = () => {
@@ -33,7 +33,7 @@ const Form = () => {
       const car = createRandomCar();
       createCarApi(car);
     }
-    createDispatchEvent('app:updateCarsList');
+    createDispatchEvent('app:garage:updateCarsList');
   };
 
   const createCarWrap = document.createElement('div');
@@ -50,11 +50,38 @@ const Form = () => {
     ColorSelect({ onChange: inputColor }),
     Button({ onClick: createCar, title: 'create' }),
   );
-  updateCarWrap.append(
-    Input({ onChange: createCar }),
-    ColorSelect({ onChange: createCar }),
-    Button({ onClick: createCar, title: 'update' }),
-  );
+
+  const updateCar = async () => {
+    await updateCarApi(
+      JSON.parse(localStorage.getItem('currentCarId')),
+      carState,
+    );
+    // await getCarsListApi();
+    createDispatchEvent('app:garage:updateCarsList');
+  };
+
+  const updateInput = Input({
+    onChange: (value: string) => {
+      carState.name = value;
+    },
+  });
+  const updateBtn = Button({ onClick: createCar, title: 'update' });
+  const updateSelect = ColorSelect({
+    onChange: (value: string) => {
+      carState.color = value;
+    },
+  });
+
+  updateCarWrap.append(updateInput, updateSelect, updateBtn);
+
+  window.addEventListener('app:garage:selectCar', async () => {
+    const { name, color } = await getCarApi(
+      JSON.parse(localStorage.getItem('currentCarId')),
+    );
+    updateInput.value = name;
+    updateSelect.value = color;
+  });
+
   btnCarWrap.append(
     Button({ onClick: createCar, title: 'race' }),
     Button({ onClick: createCar, title: 'reset' }),
