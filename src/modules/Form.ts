@@ -3,24 +3,29 @@ import Button from '../components/Button';
 import ColorSelect from '../components/ColorSelect';
 import Input from '../components/Input';
 import createRandomCar from '../utils/create-random-car';
+import createDispatchEvent from '../utils/dispatch-event';
 
 const Form = () => {
   const carState = {
-    name: '',
+    name: 'Tesla',
     color: '#000',
   };
+
   const component = document.createElement('div');
   component.className = 'form';
+
   const inputName = (value: string) => {
     carState.name = value;
   };
+
   const inputColor = (value: string) => {
     carState.color = value;
   };
 
   const createCar = async () => {
     await createCarApi(carState);
-    getCarApi();
+    // await getCarApi();
+    createDispatchEvent('app:createNewCar');
   };
 
   const generateCars = () => {
@@ -28,6 +33,7 @@ const Form = () => {
       const car = createRandomCar();
       createCarApi(car);
     }
+    createDispatchEvent('app:createNewCar');
   };
 
   const createCarWrap = document.createElement('div');

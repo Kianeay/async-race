@@ -4,6 +4,7 @@ import Car from '../components/Car';
 interface ICarsLst {
   totalCarsCount: number;
 }
+
 const CarsList = ({ totalCarsCount = 13 }: ICarsLst) => {
   const component = document.createElement('div');
   component.className = 'cars';
@@ -27,9 +28,11 @@ const CarsList = ({ totalCarsCount = 13 }: ICarsLst) => {
       console.log(item);
       return Car(item);
     });
+    list.innerHTML = '';
     list.append(...carsItems);
   };
   getCars();
+  window.addEventListener('app:createNewCar', getCars);
   component.append(title, carsPage, list);
 
   return component;

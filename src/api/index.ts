@@ -1,8 +1,10 @@
 const BASE_URL = 'http://127.0.0.1:3000/';
+
 export interface ICreateParams {
   name: string;
   color: string;
 }
+
 export const createCarApi = async (params: ICreateParams) => {
   const request = JSON.stringify(params);
 
