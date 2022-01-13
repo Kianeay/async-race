@@ -73,6 +73,7 @@ const Form = () => {
     createDispatchEvent('app:garage:updateCarsList');
     updateInput.value = '';
     updateSelect.value = '#000';
+    // eslint-disable-next-line operator-linebreak
     (updateCarWrap.querySelector('.button') as HTMLButtonElement).disabled =
       true;
   };

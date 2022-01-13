@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-catch */
 import { ICar } from '../components/Car';
 
 const BASE_URL = 'http://127.0.0.1:3000/';
@@ -41,4 +42,21 @@ export const getCarApi = async (id: number) => {
   const response = await fetch(`${BASE_URL}garage/${id}`);
   const data: ICar = await response.json();
   return data;
+};
+
+export const getCarVelocity = async (id: number, status: string) => {
+  const response = await fetch(`${BASE_URL}engine?id=${id}&status=${status}`, {
+    method: 'PATCH',
+  });
+  const data: ICar = await response.json();
+};
+
+export const driveCar = (id: number, status: string) => {
+  try {
+    const response = fetch(`${BASE_URL}engine?id=${id}&status=${status}`, {
+      method: 'PATCH',
+    });
+  } catch (err) {
+    throw err;
+  }
 };

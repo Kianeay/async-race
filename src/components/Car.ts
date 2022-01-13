@@ -1,4 +1,4 @@
-import { removeCarApi } from '../api';
+import { driveCar, getCarVelocity, removeCarApi } from '../api';
 import createDispatchEvent from '../utils/dispatch-event';
 import moveCar from '../utils/move-car';
 import Button from './Button';
@@ -46,9 +46,17 @@ const Car = ({ name, color, id }: ICar) => {
   const car = CarIcon(color);
   const flag = FlagIcon(color);
 
-  const startMove = async () => {
+  const startMove = () => {
     moveCar({ car, flag, flagX: raceContainer.offsetWidth - flag.offsetWidth });
-    const velocity = await fetch('http://127.0.0.1:3000/engine');
+    getCarVelocity(id, 'started');
+    try {
+      driveCar(id, 'drive');
+    } catch (error) {
+      // eslint-disable-next-line no-empty
+      if (error) {
+      }
+      console.log('errrrrrrrrror');
+    }
   };
 
   const btnContainer = document.createElement('div');
