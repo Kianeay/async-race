@@ -11,7 +11,6 @@ const CarsList = ({ totalCarsCount = 13 }: ICarsLst) => {
 
   const title = document.createElement('h1');
   title.className = 'cars__title';
-  title.textContent = `Garage (${totalCarsCount})`;
 
   const carsPage = document.createElement('h3');
   carsPage.className = 'cars__page';
@@ -22,12 +21,8 @@ const CarsList = ({ totalCarsCount = 13 }: ICarsLst) => {
 
   const getCars = async () => {
     const carsArr = await getCarsListApi();
-    console.log(carsArr);
-
-    const carsItems = carsArr.map((item: ICar) => {
-      console.log(item);
-      return Car(item);
-    });
+    title.textContent = `Garage (${carsArr.length})`;
+    const carsItems = carsArr.map((item: ICar) => Car(item));
     list.innerHTML = '';
     list.append(...carsItems);
   };

@@ -1,4 +1,4 @@
-import { createCarApi, getCarApi, getCarsListApi, updateCarApi } from '../api';
+import { createCarApi, getCarApi, updateCarApi } from '../api';
 import Button from '../components/Button';
 import ColorSelect from '../components/ColorSelect';
 import Input from '../components/Input';
@@ -14,26 +14,12 @@ const Form = () => {
   const component = document.createElement('div');
   component.className = 'form';
 
-  const inputName = (value: string) => {
+  const setInputName = (value: string) => {
     carState.name = value;
   };
 
-  const inputColor = (value: string) => {
+  const setInputColor = (value: string) => {
     carState.color = value;
-  };
-
-  const createCar = async () => {
-    await createCarApi(carState);
-    // await getCarsListApi();
-    createDispatchEvent('app:garage:updateCarsList');
-  };
-
-  const generateCars = () => {
-    for (let i = 0; i < 100; i += 1) {
-      const car = createRandomCar();
-      createCarApi(car);
-    }
-    createDispatchEvent('app:garage:updateCarsList');
   };
 
   const createCarWrap = document.createElement('div');
@@ -45,32 +31,54 @@ const Form = () => {
   const btnCarWrap = document.createElement('div');
   btnCarWrap.className = 'form__wrapper';
 
-  createCarWrap.append(
-    Input({ onChange: inputName }),
-    ColorSelect({ onChange: inputColor }),
-    Button({ onClick: createCar, title: 'create' }),
-  );
+  const createInput = Input({ onChange: setInputName });
+  const createColorSelect = ColorSelect({ onChange: setInputColor });
 
-  const updateCar = async () => {
-    await updateCarApi(
-      JSON.parse(localStorage.getItem('currentCarId')),
-      carState,
-    );
-    // await getCarsListApi();
+  const createCar = async () => {
+    if (createInput.value.trim()) {
+      await createCarApi(carState);
+      createDispatchEvent('app:garage:updateCarsList');
+      createInput.value = '';
+    }
+  };
+
+  const generateCars = () => {
+    for (let i = 0; i < 100; i += 1) {
+      const car = createRandomCar();
+      createCarApi(car);
+    }
     createDispatchEvent('app:garage:updateCarsList');
   };
+  const createButton = Button({ onClick: createCar, title: 'create' });
+
+  createCarWrap.append(createInput, createColorSelect, createButton);
 
   const updateInput = Input({
     onChange: (value: string) => {
       carState.name = value;
     },
   });
-  const updateBtn = Button({ onClick: createCar, title: 'update' });
+
   const updateSelect = ColorSelect({
     onChange: (value: string) => {
       carState.color = value;
     },
   });
+
+  const updateCar = async () => {
+    await updateCarApi(
+      JSON.parse(localStorage.getItem('currentCarId')),
+      carState,
+    );
+    createDispatchEvent('app:garage:updateCarsList');
+    updateInput.value = '';
+    updateSelect.value = '#000';
+    (updateCarWrap.querySelector('.button') as HTMLButtonElement).disabled =
+      true;
+  };
+
+  const updateBtn = Button({ onClick: updateCar, title: 'update' });
+  updateBtn.disabled = true;
 
   updateCarWrap.append(updateInput, updateSelect, updateBtn);
 
@@ -80,6 +88,9 @@ const Form = () => {
     );
     updateInput.value = name;
     updateSelect.value = color;
+    carState.name = name;
+    carState.color = color;
+    updateBtn.disabled = false;
   });
 
   btnCarWrap.append(
