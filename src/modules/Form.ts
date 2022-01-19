@@ -95,7 +95,12 @@ const Form = () => {
   });
 
   btnCarWrap.append(
-    Button({ onClick: createCar, title: 'race' }),
+    Button({
+      onClick: () => {
+        createDispatchEvent('app:garage:race');
+      },
+      title: 'race',
+    }),
     Button({ onClick: createCar, title: 'reset' }),
     Button({ onClick: generateCars, title: 'generate cars' }),
   );

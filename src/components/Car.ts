@@ -48,6 +48,7 @@ const Car = ({ name, color, id }: ICar) => {
   let shouldContinue = true;
 
   const startMove = async () => {
+    shouldContinue = true;
     const speed = await getCarVelocity(id, 'started');
 
     const carSet = {
@@ -73,6 +74,7 @@ const Car = ({ name, color, id }: ICar) => {
 
   const btnContainer = document.createElement('div');
   btnContainer.className = 'cars__btn-container';
+
   btnContainer.append(
     Button({ onClick: startMove, title: 'A' }),
     Button({
@@ -85,6 +87,8 @@ const Car = ({ name, color, id }: ICar) => {
       title: 'B',
     }),
   );
+
+  window.addEventListener('app:garage:race', startMove);
 
   raceContainer.append(car, flag);
   carContainer.append(btnContainer, raceContainer);
