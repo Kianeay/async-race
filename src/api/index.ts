@@ -8,6 +8,11 @@ export interface ICreateParams {
   color: string;
 }
 
+interface ICarVelocity {
+  distance: number;
+  velocity: number;
+}
+
 export const createCarApi = async (params: ICreateParams) => {
   const request = JSON.stringify(params);
 
@@ -48,15 +53,17 @@ export const getCarVelocity = async (id: number, status: string) => {
   const response = await fetch(`${BASE_URL}engine?id=${id}&status=${status}`, {
     method: 'PATCH',
   });
-  const data: ICar = await response.json();
+  const data: ICarVelocity = await response.json();
+  const { velocity } = data;
+  return velocity;
 };
 
-export const driveCar = (id: number, status: string) => {
-  try {
-    const response = fetch(`${BASE_URL}engine?id=${id}&status=${status}`, {
-      method: 'PATCH',
-    });
-  } catch (err) {
-    throw err;
+export const driveCar = async (id: number, status: string) => {
+  const response = await fetch(`${BASE_URL}engine?id=${id}&status=${status}`, {
+    method: 'PATCH',
+  });
+  if (!response.ok) {
+    return false;
   }
+  return true;
 };

@@ -1,6 +1,5 @@
 import { driveCar, getCarVelocity, removeCarApi } from '../api';
 import createDispatchEvent from '../utils/dispatch-event';
-import moveCar from '../utils/move-car';
 import Button from './Button';
 import CarIcon from './CarIcon';
 import FlagIcon from './FlagIcon';
@@ -46,24 +45,45 @@ const Car = ({ name, color, id }: ICar) => {
   const car = CarIcon(color);
   const flag = FlagIcon(color);
 
-  const startMove = () => {
-    moveCar({ car, flag, flagX: raceContainer.offsetWidth - flag.offsetWidth });
-    getCarVelocity(id, 'started');
-    try {
-      driveCar(id, 'drive');
-    } catch (error) {
-      // eslint-disable-next-line no-empty
-      if (error) {
+  let shouldContinue = true;
+
+  const startMove = async () => {
+    const speed = await getCarVelocity(id, 'started');
+
+    const carSet = {
+      car,
+      flag,
+      carX: 0,
+      flagX: raceContainer.offsetWidth - flag.offsetWidth,
+      speed: speed / 100,
+    };
+
+    const tick = () => {
+      carSet.carX = carSet.carX + 1 + carSet.speed;
+      car.style.transform = `translateX(${carSet.carX}px)`;
+
+      if (shouldContinue) {
+        requestAnimationFrame(tick);
       }
-      console.log('errrrrrrrrror');
-    }
+    };
+    tick();
+
+    shouldContinue = await driveCar(id, 'drive');
   };
 
   const btnContainer = document.createElement('div');
   btnContainer.className = 'cars__btn-container';
   btnContainer.append(
     Button({ onClick: startMove, title: 'A' }),
-    Button({ onClick: selectCar, title: 'B' }),
+    Button({
+      onClick: () => {
+        shouldContinue = false;
+        setTimeout(() => {
+          car.style.transform = 'translateX(0px)';
+        }, 500);
+      },
+      title: 'B',
+    }),
   );
 
   raceContainer.append(car, flag);
