@@ -89,6 +89,12 @@ const Car = ({ name, color, id }: ICar) => {
   );
 
   window.addEventListener('app:garage:race', startMove);
+  window.addEventListener('app:garage:resetRace', () => {
+    shouldContinue = false;
+    setTimeout(() => {
+      car.style.transform = 'translateX(0px)';
+    }, 500);
+  });
 
   raceContainer.append(car, flag);
   carContainer.append(btnContainer, raceContainer);

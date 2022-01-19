@@ -101,7 +101,12 @@ const Form = () => {
       },
       title: 'race',
     }),
-    Button({ onClick: createCar, title: 'reset' }),
+    Button({
+      onClick: () => {
+        createDispatchEvent('app:garage:resetRace');
+      },
+      title: 'reset',
+    }),
     Button({ onClick: generateCars, title: 'generate cars' }),
   );
 
