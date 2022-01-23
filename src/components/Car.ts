@@ -48,6 +48,10 @@ const Car = ({ name, color, id }: ICar) => {
   let shouldContinue = true;
 
   const startMove = async () => {
+    const start = Date.now();
+
+    localStorage.removeItem('isFirst');
+    localStorage.removeItem('isRace');
     shouldContinue = true;
     const speed = await getCarVelocity(id, 'started');
 
@@ -65,6 +69,22 @@ const Car = ({ name, color, id }: ICar) => {
 
       if (carSet.carX > carSet.flagX + 25) {
         shouldContinue = false;
+
+        if (
+          !localStorage.getItem('isFirst') &&
+          localStorage.getItem('isRace')
+        ) {
+          const time = ((Date.now() - start) / 1000).toFixed(2);
+          console.log(time);
+          const winnerName = document.querySelector('.winner-name');
+          winnerName.classList.remove('none');
+          winnerName.textContent = `${name} went first(${time} sec)`;
+
+          setTimeout(() => {
+            winnerName.classList.add('none');
+          }, 4000);
+        }
+        localStorage.setItem('isFirst', 'true');
       }
 
       if (shouldContinue) {

@@ -90,6 +90,22 @@ ul {
           flex-grow: 1;
 }
 
+.winner-name {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: #ffc4c491;
+  font-size: 40px;
+  text-align: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  z-index: 10;
+  font-weight: bold;
+}
+
 .nav {
   max-width: 300px;
   display: -webkit-box;

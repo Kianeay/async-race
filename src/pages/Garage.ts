@@ -9,6 +9,12 @@ const Garage = () => {
   const component = document.createElement('div');
   component.className = 'garage';
   component.append(Navbar(), Form(), CarsList({ totalCarsCount: 1 }));
+
+  const winnerName = document.createElement('p');
+  winnerName.className = 'none winner-name';
+
+  component.append(winnerName);
+
   return component;
 };
 

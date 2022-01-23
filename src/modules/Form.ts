@@ -98,6 +98,7 @@ const Form = () => {
     Button({
       onClick: () => {
         createDispatchEvent('app:garage:race');
+        localStorage.setItem('isRace', 'true');
       },
       title: 'race',
     }),
