@@ -111,10 +111,13 @@ ul {
 }
 
 .cars__icon {
-  width: 100px;
+  width: 90px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
 }
 
 .cars__header {
@@ -162,7 +165,7 @@ ul {
 }
 
 .cars__flag {
-  width: 80px;
-  padding-right: 40px;
+  width: 140px;
+  padding-right: 100px;
 }
 /*# sourceMappingURL=style.css.map */

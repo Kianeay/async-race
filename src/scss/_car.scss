@@ -1,7 +1,8 @@
 .cars {
   &__icon {
-    width: 100px;
+    width: 90px;
     display: flex;
+    align-items: flex-end;
   }
 
   &__header {
@@ -37,7 +38,7 @@
   }
 
   &__flag {
-    width: 80px;
-    padding-right: 40px;
+    width: 140px;
+    padding-right: 100px;
   }
 }

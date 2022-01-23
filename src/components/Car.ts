@@ -43,7 +43,7 @@ const Car = ({ name, color, id }: ICar) => {
   raceContainer.className = 'cars__race-container';
 
   const car = CarIcon(color);
-  const flag = FlagIcon(color);
+  const flag = FlagIcon('#ff0f09');
 
   let shouldContinue = true;
 
@@ -63,6 +63,10 @@ const Car = ({ name, color, id }: ICar) => {
       carSet.carX = carSet.carX + 1 + carSet.speed;
       car.style.transform = `translateX(${carSet.carX}px)`;
 
+      if (carSet.carX > carSet.flagX + 25) {
+        shouldContinue = false;
+      }
+
       if (shouldContinue) {
         requestAnimationFrame(tick);
       }
@@ -75,18 +79,39 @@ const Car = ({ name, color, id }: ICar) => {
   const btnContainer = document.createElement('div');
   btnContainer.className = 'cars__btn-container';
 
-  btnContainer.append(
-    Button({ onClick: startMove, title: 'A' }),
-    Button({
-      onClick: () => {
-        shouldContinue = false;
-        setTimeout(() => {
-          car.style.transform = 'translateX(0px)';
-        }, 500);
-      },
-      title: 'B',
-    }),
-  );
+  const buttonStartMove = Button({
+    onClick: () => {
+      startMove();
+      (
+        carContainer.querySelector('.cars__start') as HTMLButtonElement
+      ).disabled = true;
+      (
+        carContainer.querySelector('.cars__stop') as HTMLButtonElement
+      ).disabled = false;
+    },
+    title: 'A',
+  });
+  buttonStartMove.classList.add('cars__start');
+
+  const buttonStopMove = Button({
+    onClick: () => {
+      shouldContinue = false;
+      setTimeout(() => {
+        car.style.transform = 'translateX(0px)';
+      }, 500);
+      (
+        carContainer.querySelector('.cars__start') as HTMLButtonElement
+      ).disabled = false;
+      (
+        carContainer.querySelector('.cars__stop') as HTMLButtonElement
+      ).disabled = true;
+    },
+    title: 'B',
+  });
+  buttonStopMove.classList.add('cars__stop');
+  buttonStopMove.disabled = true;
+
+  btnContainer.append(buttonStartMove, buttonStopMove);
 
   window.addEventListener('app:garage:race', startMove);
   window.addEventListener('app:garage:resetRace', () => {
