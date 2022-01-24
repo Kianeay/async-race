@@ -1,3 +1,5 @@
+import Navbar from '../modules/Navbar';
+import Table from '../modules/Table';
 import changePageTitle from '../utils/change-page-title';
 
 const Winners = () => {
@@ -10,7 +12,7 @@ const Winners = () => {
   title.className = 'winners__title';
   title.textContent = 'Winners (0)';
 
-  component.append(title);
+  component.append(Navbar(), title, Table());
 
   return component;
 };

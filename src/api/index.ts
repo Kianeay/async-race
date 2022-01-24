@@ -8,7 +8,7 @@ export interface ICreateParams {
   color: string;
 }
 
-interface IWinnerParams {
+export interface IWinnerParams {
   id?: number;
   wins: number;
   time: number;
