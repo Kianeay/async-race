@@ -1,4 +1,12 @@
-import { driveCar, getCarVelocity, removeCarApi } from '../api';
+import {
+  createWinner,
+  driveCar,
+  getAllWinner,
+  getCarVelocity,
+  getWinner,
+  removeCarApi,
+  updateWinner,
+} from '../api';
 import createDispatchEvent from '../utils/dispatch-event';
 import Button from './Button';
 import CarIcon from './CarIcon';
@@ -63,6 +71,18 @@ const Car = ({ name, color, id }: ICar) => {
       speed: speed / 100,
     };
 
+    const setWinner = async (time: number) => {
+      const winData = await getWinner(id);
+
+      if (!Object.keys(winData).length) {
+        await createWinner({ id, wins: 1, time });
+      } else {
+        if (winData.time < time) return;
+        await updateWinner(id, { time, wins: winData.wins + 1 });
+      }
+      const allWinnersData = await getAllWinner({});
+    };
+
     const tick = () => {
       carSet.carX = carSet.carX + 1 + carSet.speed;
       car.style.transform = `translateX(${carSet.carX}px)`;
@@ -75,7 +95,7 @@ const Car = ({ name, color, id }: ICar) => {
           localStorage.getItem('isRace')
         ) {
           const time = ((Date.now() - start) / 1000).toFixed(2);
-          console.log(time);
+          setWinner(+time);
           const winnerName = document.querySelector('.winner-name');
           winnerName.classList.remove('none');
           winnerName.textContent = `${name} went first(${time} sec)`;

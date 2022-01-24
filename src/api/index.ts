@@ -20,10 +20,10 @@ interface ICarVelocity {
 }
 
 interface IGetAllWinners {
-  _page: number;
-  _limit: number;
-  _sort: 'id' | 'wins' | 'time';
-  _order: 'ASC' | 'DESC';
+  page?: number;
+  limit?: number;
+  sort?: 'id' | 'wins' | 'time';
+  order?: 'ASC' | 'DESC';
 }
 
 export const createCarApi = async (params: ICreateParams) => {
@@ -96,9 +96,7 @@ export const getWinner = async (id: number) => {
 };
 
 export const getAllWinner = async (params: IGetAllWinners) => {
-  const response = await fetch(`${BASE_URL}winners/`, {
-    body: JSON.stringify(params),
-  });
+  const response = await fetch(`${BASE_URL}winners`);
   const data = await response.json();
   return data;
 };
