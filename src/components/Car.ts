@@ -5,6 +5,7 @@ import {
   getCarVelocity,
   getWinner,
   removeCarApi,
+  removeWinner,
   updateWinner,
 } from '../api';
 import createDispatchEvent from '../utils/dispatch-event';
@@ -30,6 +31,7 @@ const Car = ({ name, color, id }: ICar) => {
 
   const removeCar = async () => {
     await removeCarApi(id);
+    await removeWinner(id);
     createDispatchEvent('app:garage:updateCarsList');
   };
 

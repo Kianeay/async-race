@@ -1,4 +1,5 @@
 import { getAllWinner, getCarApi, IWinnerParams } from '../api';
+import CarIcon from '../components/CarIcon';
 
 const Table = () => {
   const table = document.createElement('table');
@@ -27,6 +28,7 @@ const Table = () => {
         const tdNum = document.createElement('td');
         tdNum.textContent = `${i + 1}`;
         const tdCar = document.createElement('td');
+        tdCar.append(CarIcon(data.color));
         const tdName = document.createElement('td');
         tdName.textContent = data.name;
         const tdWins = document.createElement('td');

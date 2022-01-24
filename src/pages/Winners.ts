@@ -1,3 +1,4 @@
+import { getAllWinner } from '../api';
 import Navbar from '../modules/Navbar';
 import Table from '../modules/Table';
 import changePageTitle from '../utils/change-page-title';
@@ -10,7 +11,12 @@ const Winners = () => {
 
   const title = document.createElement('h2');
   title.className = 'winners__title';
-  title.textContent = 'Winners (0)';
+
+  const showWinners = async () => {
+    const dataWinners = await getAllWinner({});
+    title.textContent = `Winners (${Object.keys(dataWinners).length})`;
+  };
+  showWinners();
 
   component.append(Navbar(), title, Table());
 
