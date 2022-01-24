@@ -36,8 +36,12 @@ export const createCarApi = async (params: ICreateParams) => {
   });
 };
 
-export const getCarsListApi = async () => {
-  const response = await fetch(`${BASE_URL}garage`);
+export const getCarsListApi = async (page?: number, limit?: number) => {
+  const response = await fetch(
+    `${BASE_URL}garage?${page ? `_page=${page}` : ''}${
+      limit ? `&_limit=${limit}` : ''
+    }`,
+  );
   const data: ICar[] = await response.json();
   return data;
 };
