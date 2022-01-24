@@ -8,9 +8,22 @@ export interface ICreateParams {
   color: string;
 }
 
+interface IWinnerParams {
+  id?: number;
+  wins: number;
+  time: number;
+}
+
 interface ICarVelocity {
   distance: number;
   velocity: number;
+}
+
+interface IGetAllWinners {
+  _page: number;
+  _limit: number;
+  _sort: 'id' | 'wins' | 'time';
+  _order: 'ASC' | 'DESC';
 }
 
 export const createCarApi = async (params: ICreateParams) => {
@@ -66,4 +79,40 @@ export const driveCar = async (id: number, status: string) => {
     return false;
   }
   return true;
+};
+
+export const createWinner = async (params: IWinnerParams) => {
+  const response = await fetch(`${BASE_URL}winners/`, {
+    headers: { 'Content-Type': 'application/json' },
+    method: 'POST',
+    body: JSON.stringify(params),
+  });
+};
+
+export const getWinner = async (id: number) => {
+  const response = await fetch(`${BASE_URL}winners/${id}`);
+  const data = await response.json();
+  return data;
+};
+
+export const getAllWinner = async (params: IGetAllWinners) => {
+  const response = await fetch(`${BASE_URL}winners/`, {
+    body: JSON.stringify(params),
+  });
+  const data = await response.json();
+  return data;
+};
+
+export const updateWinner = async (id: number, params: IWinnerParams) => {
+  const response = await fetch(`${BASE_URL}winners/${id}`, {
+    headers: { 'Content-Type': 'application/json' },
+    method: 'PUT',
+    body: JSON.stringify(params),
+  });
+};
+
+export const removeWinner = async (id: number) => {
+  const response = await fetch(`${BASE_URL}winners/${id}`, {
+    method: 'DELETE',
+  });
 };
