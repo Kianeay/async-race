@@ -82,7 +82,6 @@ const Car = ({ name, color, id }: ICar) => {
         if (winData.time < time) return;
         await updateWinner(id, { time, wins: winData.wins + 1 });
       }
-      const allWinnersData = await getAllWinner({});
     };
 
     const tick = () => {

@@ -43,7 +43,6 @@ const CarsList = () => {
       title: 'prev',
       onClick: () => {
         if (currentPage === 1) return;
-        const page = Math.floor(carsCount / 7);
         currentPage -= 1;
         getCars();
       },
