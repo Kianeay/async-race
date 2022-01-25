@@ -80,6 +80,7 @@ const Table = () => {
   showWinners();
   table.append(tHead, tBody);
   const btnWrap = document.createElement('div');
+  btnWrap.className = 'btn-wrap';
 
   function sortWinners(sort: string) {
     switch (sort) {

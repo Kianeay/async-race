@@ -38,7 +38,7 @@ ul {
 }
 
 .button {
-  background-color: #f7d3d2;
+  background-color: #d2d6f7;
   outline: none;
   border: none;
   border-radius: 5px;
@@ -53,7 +53,7 @@ ul {
 }
 
 .button:hover {
-  background-color: #fd9ca5;
+  background-color: #5758be;
 }
 
 .button.active {
@@ -148,6 +148,16 @@ ul {
           align-items: center;
 }
 
+.cars__header .button:first-child {
+  background-color: #5758be;
+  color: white;
+}
+
+.cars__header .button:nth-child(2) {
+  background-color: #be579f;
+  color: white;
+}
+
 .cars__btn-container .button {
   width: 50px;
   height: 20px;
@@ -183,5 +193,27 @@ ul {
 .cars__flag {
   width: 140px;
   padding-right: 100px;
+}
+
+.table {
+  cursor: pointer;
+}
+
+.table .active {
+  background-color: #d2d6f7;
+}
+
+.btn-wrap {
+  padding-top: 20px;
+}
+
+.btn-wrap .button {
+  margin: 10px;
+  width: 170px;
+  background: -webkit-gradient(linear, left top, right top, from(#739cdb), color-stop(27%, #1e21d7), color-stop(58%, #2a3ea6), color-stop(71%, #3654c7), to(#c1d4fd));
+  background: linear-gradient(90deg, #739cdb 0%, #1e21d7 27%, #2a3ea6 58%, #3654c7 71%, #c1d4fd 100%);
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
 }
 /*# sourceMappingURL=style.css.map */

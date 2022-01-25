@@ -1,0 +1,25 @@
+.table {
+  & .active {
+    background-color: $main;
+  }
+  cursor: pointer;
+}
+
+.btn-wrap {
+  padding-top: 20px;
+  & .button {
+    margin: 10px;
+    width: 170px;
+    background: linear-gradient(
+      90deg,
+      rgba(115, 156, 219, 1) 0%,
+      rgba(30, 33, 215, 1) 27%,
+      rgba(42, 62, 166, 1) 58%,
+      rgba(54, 84, 199, 1) 71%,
+      rgba(193, 212, 253, 1) 100%
+    );
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+  }
+}

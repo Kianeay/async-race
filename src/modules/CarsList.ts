@@ -37,6 +37,7 @@ const CarsList = () => {
   window.addEventListener('app:garage:updateCarsList', getCars);
 
   const btnWrap = document.createElement('div');
+  btnWrap.className = 'btn-wrap';
 
   btnWrap.append(
     Button({
