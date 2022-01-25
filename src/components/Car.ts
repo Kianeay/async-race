@@ -154,7 +154,7 @@ const Car = ({ name, color, id }: ICar) => {
 
   btnContainer.append(buttonStartMove, buttonStopMove);
 
-  window.addEventListener('app:garage:race', startMove);
+  component.addEventListener('app:garage:race', startMove);
   window.addEventListener('app:garage:resetRace', () => {
     shouldContinue = false;
     setTimeout(() => {

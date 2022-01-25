@@ -97,7 +97,10 @@ const Form = () => {
   btnCarWrap.append(
     Button({
       onClick: () => {
-        createDispatchEvent('app:garage:race');
+        document.querySelectorAll('.cars__item').forEach((car) => {
+          car.dispatchEvent(new Event('app:garage:race'));
+        });
+        // createDispatchEvent('app:garage:race');
         localStorage.setItem('isRace', 'true');
       },
       title: 'race',
