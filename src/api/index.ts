@@ -19,7 +19,7 @@ interface ICarVelocity {
   velocity: number;
 }
 
-interface IGetAllWinners {
+export interface IGetAllWinners {
   page?: number;
   limit?: number;
   sort?: 'id' | 'wins' | 'time';
@@ -99,7 +99,20 @@ export const getWinner = async (id: number) => {
   return data;
 };
 
-export const getAllWinner = async (params: IGetAllWinners) => {
+export const getAllWinner = async ({
+  page,
+  limit,
+  sort,
+  order,
+}: IGetAllWinners) => {
+  const response = await fetch(
+    `${BASE_URL}winners?_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`,
+  );
+  const data = await response.json();
+  return data;
+};
+
+export const getAllWinnerCount = async () => {
   const response = await fetch(`${BASE_URL}winners`);
   const data = await response.json();
   return data;

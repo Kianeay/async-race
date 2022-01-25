@@ -1,7 +1,25 @@
-import { getAllWinner, getCarApi, IWinnerParams } from '../api';
+import {
+  getAllWinner,
+  getAllWinnerCount,
+  getCarApi,
+  IGetAllWinners,
+  IWinnerParams,
+} from '../api';
+import Button from '../components/Button';
 import CarIcon from '../components/CarIcon';
 
 const Table = () => {
+  const sortSettings: Required<IGetAllWinners> = {
+    page: 1,
+    limit: 10,
+    sort: 'id',
+    order: 'ASC',
+  };
+  const component = document.createElement('div');
+
+  const winnersPageTitle = document.createElement('h3');
+  winnersPageTitle.className = 'cars__page';
+
   const table = document.createElement('table');
   table.className = 'table';
 
@@ -19,8 +37,15 @@ const Table = () => {
 
   const tBody = document.createElement('tbody');
 
+  let winnerCount = 0;
+
   const showWinners = async () => {
-    const dataWinners = await getAllWinner({});
+    const dataWinners = await getAllWinner(sortSettings);
+    const getWinnerCount = await getAllWinnerCount();
+    winnerCount = getWinnerCount.length;
+
+    winnersPageTitle.textContent = `Page ${sortSettings.page}`;
+
     const rows = await Promise.all(
       dataWinners.map(async (el: Required<IWinnerParams>, i: number) => {
         const data = await getCarApi(el.id);
@@ -44,8 +69,29 @@ const Table = () => {
   };
   showWinners();
   table.append(tHead, tBody);
+  const btnWrap = document.createElement('div');
 
-  return table;
+  btnWrap.append(
+    Button({
+      title: 'prev',
+      onClick: () => {
+        if (sortSettings.page === 1) return;
+        sortSettings.page -= 1;
+        showWinners();
+      },
+    }),
+    Button({
+      title: 'next',
+      onClick: () => {
+        const page = Math.ceil(winnerCount / 10);
+        if (page === sortSettings.page) return;
+        sortSettings.page += 1;
+        showWinners();
+      },
+    }),
+  );
+  component.append(winnersPageTitle, table, btnWrap);
+  return component;
 };
 
 export default Table;

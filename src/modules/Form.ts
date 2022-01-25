@@ -100,7 +100,6 @@ const Form = () => {
         document.querySelectorAll('.cars__item').forEach((car) => {
           car.dispatchEvent(new Event('app:garage:race'));
         });
-        // createDispatchEvent('app:garage:race');
         localStorage.setItem('isRace', 'true');
       },
       title: 'race',

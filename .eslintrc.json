@@ -29,6 +29,7 @@
         "import/extensions": 0,
         "no-useless-constructor": 0,
         "no-unused-vars": 0,
-        "operator-linebreak":"off"
+        "operator-linebreak":"off",
+        "object-curly-newline":"off"
     }
 }

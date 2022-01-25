@@ -79,8 +79,10 @@ const Car = ({ name, color, id }: ICar) => {
       if (!Object.keys(winData).length) {
         await createWinner({ id, wins: 1, time });
       } else {
-        if (winData.time < time) return;
-        await updateWinner(id, { time, wins: winData.wins + 1 });
+        await updateWinner(id, {
+          time: winData.time < time ? winData.time : time,
+          wins: winData.wins + 1,
+        });
       }
     };
 
