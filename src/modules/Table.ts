@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-use-before-define */
 import {
   getAllWinner,
   getAllWinnerCount,
@@ -29,6 +31,13 @@ const Table = () => {
   const tHeadTitles = head.map((el) => {
     const td = document.createElement('td');
     td.textContent = el;
+    if (el === 'Wins') {
+      td.addEventListener('click', () => sortWinners('wins'));
+    } else if (el === 'Number') {
+      td.addEventListener('click', () => sortWinners('id'));
+    } else if (el === 'Best time (seconds)') {
+      td.addEventListener('click', () => sortWinners('time'));
+    }
     return td;
   });
   const tr = document.createElement('tr');
@@ -67,9 +76,34 @@ const Table = () => {
     tBody.innerHTML = '';
     tBody.append(...rows);
   };
+
   showWinners();
   table.append(tHead, tBody);
   const btnWrap = document.createElement('div');
+
+  function sortWinners(sort: string) {
+    switch (sort) {
+      case 'wins':
+        sortSettings.sort = 'wins';
+        break;
+
+      case 'time':
+        sortSettings.sort = 'time';
+        break;
+
+      case 'id':
+        sortSettings.sort = 'id';
+        break;
+
+      default:
+        break;
+    }
+    sortSettings.order === 'ASC'
+      ? (sortSettings.order = 'DESC')
+      : (sortSettings.order = 'ASC');
+
+    showWinners();
+  }
 
   btnWrap.append(
     Button({

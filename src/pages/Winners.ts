@@ -1,4 +1,4 @@
-import { getAllWinner } from '../api';
+import { getAllWinner, getAllWinnerCount } from '../api';
 import Navbar from '../modules/Navbar';
 import Table from '../modules/Table';
 import changePageTitle from '../utils/change-page-title';
@@ -13,7 +13,7 @@ const Winners = () => {
   title.className = 'winners__title';
 
   const showWinners = async () => {
-    const dataWinners = await getAllWinner({});
+    const dataWinners = await getAllWinnerCount();
     title.textContent = `Winners (${Object.keys(dataWinners).length})`;
   };
   showWinners();
