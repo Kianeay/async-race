@@ -1,7 +1,7 @@
-import { getAllWinner, getAllWinnerCount } from '../api';
-import Navbar from '../modules/Navbar';
-import Table from '../modules/Table';
-import changePageTitle from '../utils/change-page-title';
+import { getAllWinner, getAllWinnerCount } from '../../api';
+import Navbar from '../Common/Navbar';
+import Table from './Table';
+import changePageTitle from '../../utils/change-page-title';
 
 const Winners = () => {
   changePageTitle('Winners');

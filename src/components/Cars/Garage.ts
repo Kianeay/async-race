@@ -1,7 +1,6 @@
-import CarsList from '../modules/CarsList';
-import Form from '../modules/Form';
-import Navbar from '../modules/Navbar';
-import changePageTitle from '../utils/change-page-title';
+import { CarsList, Form } from '.';
+import { Navbar } from '../Common';
+import changePageTitle from '../../utils/change-page-title';
 
 const Garage = () => {
   changePageTitle('Garage');

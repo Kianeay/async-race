@@ -1,4 +1,4 @@
-import navigate from '../Router/Router';
+import navigate from '../../Router/Router';
 
 const links = ['garage', 'winners'];
 

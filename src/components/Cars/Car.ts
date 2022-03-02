@@ -1,16 +1,14 @@
 import {
   createWinner,
   driveCar,
-  getAllWinner,
   getCarVelocity,
   getWinner,
   removeCarApi,
   removeWinner,
   updateWinner,
-} from '../api';
-import createDispatchEvent from '../utils/dispatch-event';
-import Button from './Button';
-import CarIcon from './CarIcon';
+} from '../../api';
+import createDispatchEvent from '../../utils/dispatch-event';
+import { Button, CarIcon } from '../Common/index';
 import FlagIcon from './FlagIcon';
 
 export interface ICar {
@@ -18,6 +16,7 @@ export interface ICar {
   color: string;
   id: number;
 }
+
 const Car = ({ name, color, id }: ICar) => {
   const component = document.createElement('li');
   component.className = 'cars__item';
@@ -63,6 +62,7 @@ const Car = ({ name, color, id }: ICar) => {
     localStorage.removeItem('isFirst');
     localStorage.removeItem('isRace');
     shouldContinue = true;
+
     const speed = await getCarVelocity(id, 'started');
 
     const carSet = {
@@ -134,6 +134,7 @@ const Car = ({ name, color, id }: ICar) => {
     },
     title: 'A',
   });
+
   buttonStartMove.classList.add('cars__start');
 
   const buttonStopMove = Button({
@@ -151,12 +152,14 @@ const Car = ({ name, color, id }: ICar) => {
     },
     title: 'B',
   });
+
   buttonStopMove.classList.add('cars__stop');
   buttonStopMove.disabled = true;
 
   btnContainer.append(buttonStartMove, buttonStopMove);
 
   component.addEventListener('app:garage:race', startMove);
+
   window.addEventListener('app:garage:resetRace', () => {
     shouldContinue = false;
     setTimeout(() => {
@@ -165,6 +168,7 @@ const Car = ({ name, color, id }: ICar) => {
   });
 
   raceContainer.append(car, flag);
+
   carContainer.append(btnContainer, raceContainer);
 
   component.append(itemHeader, carContainer);

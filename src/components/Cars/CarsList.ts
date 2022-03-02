@@ -1,6 +1,6 @@
-import { getCarsListApi, ICreateParams } from '../api';
-import Car, { ICar } from '../components/Car';
-import Button from '../components/Button';
+import { getCarsListApi } from '../../api';
+import Car, { ICar } from './Car';
+import Button from '../Common/Button';
 
 interface ICarsLst {
   totalCarsCount: number;

@@ -1,5 +1,4 @@
-/* eslint-disable no-useless-catch */
-import { ICar } from '../components/Car';
+import { ICar } from '../components/Cars/Car';
 
 const BASE_URL = 'http://127.0.0.1:3000/';
 
@@ -43,6 +42,7 @@ export const getCarsListApi = async (page?: number, limit?: number) => {
     }`,
   );
   const data: ICar[] = await response.json();
+
   return data;
 };
 
@@ -63,6 +63,7 @@ export const updateCarApi = async (id: number, params: ICreateParams) => {
 export const getCarApi = async (id: number) => {
   const response = await fetch(`${BASE_URL}garage/${id}`);
   const data: ICar = await response.json();
+
   return data;
 };
 
@@ -72,6 +73,7 @@ export const getCarVelocity = async (id: number, status: string) => {
   });
   const data: ICarVelocity = await response.json();
   const { velocity } = data;
+
   return velocity;
 };
 
@@ -82,6 +84,7 @@ export const driveCar = async (id: number, status: string) => {
   if (!response.ok) {
     return false;
   }
+
   return true;
 };
 
@@ -96,6 +99,7 @@ export const createWinner = async (params: IWinnerParams) => {
 export const getWinner = async (id: number) => {
   const response = await fetch(`${BASE_URL}winners/${id}`);
   const data = await response.json();
+
   return data;
 };
 
@@ -109,12 +113,14 @@ export const getAllWinner = async ({
     `${BASE_URL}winners?_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`,
   );
   const data = await response.json();
+
   return data;
 };
 
 export const getAllWinnerCount = async () => {
   const response = await fetch(`${BASE_URL}winners`);
   const data = await response.json();
+
   return data;
 };
 

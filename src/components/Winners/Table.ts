@@ -1,14 +1,12 @@
-/* eslint-disable no-unused-expressions */
-
 import {
   getAllWinner,
   getAllWinnerCount,
   getCarApi,
   IGetAllWinners,
   IWinnerParams,
-} from '../api';
-import Button from '../components/Button';
-import CarIcon from '../components/CarIcon';
+} from '../../api';
+
+import { Button, CarIcon } from '../Common/index';
 
 const Table = () => {
   const sortSettings: Required<IGetAllWinners> = {
@@ -28,6 +26,7 @@ const Table = () => {
   const head = ['Number', 'Car', 'Name', 'Wins', 'Best time (seconds)'];
 
   const tHead = document.createElement('thead');
+
   const tHeadTitles = head.map((el) => {
     const td = document.createElement('td');
     td.textContent = el;
@@ -38,10 +37,14 @@ const Table = () => {
     } else if (el === 'Best time (seconds)') {
       td.addEventListener('click', () => sortWinners('time'));
     }
+
     return td;
   });
+
   const tr = document.createElement('tr');
+
   tr.append(...tHeadTitles);
+
   tHead.append(tr);
 
   const tBody = document.createElement('tbody');
@@ -62,22 +65,28 @@ const Table = () => {
         const tdNum = document.createElement('td');
         tdNum.textContent = `${i + 1}`;
         const tdCar = document.createElement('td');
+
         tdCar.append(CarIcon(data.color));
+
         const tdName = document.createElement('td');
         tdName.textContent = data.name;
         const tdWins = document.createElement('td');
         tdWins.textContent = `${el.wins}`;
         const tdTime = document.createElement('td');
         tdTime.textContent = `${el.time}`;
+
         row.append(tdNum, tdCar, tdName, tdWins, tdTime);
+
         return row;
       }),
     );
     tBody.innerHTML = '';
+
     tBody.append(...rows);
   };
 
   showWinners();
+
   table.append(tHead, tBody);
   const btnWrap = document.createElement('div');
   btnWrap.className = 'btn-wrap';
@@ -125,7 +134,9 @@ const Table = () => {
       },
     }),
   );
+
   component.append(winnersPageTitle, table, btnWrap);
+
   return component;
 };
 

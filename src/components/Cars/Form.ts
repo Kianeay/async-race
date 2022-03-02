@@ -1,9 +1,8 @@
-import { createCarApi, getCarApi, updateCarApi } from '../api';
-import Button from '../components/Button';
-import ColorSelect from '../components/ColorSelect';
-import Input from '../components/Input';
-import createRandomCar from '../utils/create-random-car';
-import createDispatchEvent from '../utils/dispatch-event';
+import { createCarApi, getCarApi, updateCarApi } from '../../api';
+import Button from '../Common/Button';
+import { ColorSelect, Input } from '.';
+import createRandomCar from '../../utils/create-random-car';
+import createDispatchEvent from '../../utils/dispatch-event';
 
 const Form = () => {
   const carState = {
@@ -47,8 +46,10 @@ const Form = () => {
       const car = createRandomCar();
       createCarApi(car);
     }
+
     createDispatchEvent('app:garage:updateCarsList');
   };
+
   const createButton = Button({ onClick: createCar, title: 'create' });
 
   createCarWrap.append(createInput, createColorSelect, createButton);
@@ -70,7 +71,9 @@ const Form = () => {
       JSON.parse(localStorage.getItem('currentCarId')),
       carState,
     );
+
     createDispatchEvent('app:garage:updateCarsList');
+
     updateInput.value = '';
     updateSelect.value = '#000';
     (updateCarWrap.querySelector('.button') as HTMLButtonElement).disabled =

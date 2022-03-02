@@ -1,6 +1,6 @@
 import Controller from './Controller';
-import Garage from '../../pages/Garage';
-import Winners from '../../pages/Winners';
+import Garage from '../../components/Cars/Garage';
+import Winners from '../../components/Winners/Winners';
 
 export default class View {
   private appPage: Element | null = null;
