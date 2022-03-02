@@ -29,12 +29,4 @@ export default class Controller {
   changePage(page: string) {
     this.view.changePage(page);
   }
-
-  getStore() {
-    return this.model.getStore();
-  }
-
-  setStore(state: any) {
-    this.model.setStore(state);
-  }
 }

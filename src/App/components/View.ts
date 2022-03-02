@@ -1,4 +1,3 @@
-/* eslint-disable no-empty-function */
 import Controller from './Controller';
 import Garage from '../../pages/Garage';
 import Winners from '../../pages/Winners';
