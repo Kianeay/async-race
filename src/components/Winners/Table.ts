@@ -1,11 +1,10 @@
 import {
   getAllWinner,
   getAllWinnerCount,
-  getCarApi,
   IGetAllWinners,
   IWinnerParams,
-} from '../../api';
-
+} from '../../api/WinnerApi';
+import { getCarApi } from '../../api/CarApi';
 import { Button, CarIcon } from '../Common/index';
 
 const Table = () => {

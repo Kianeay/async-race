@@ -1,5 +1,5 @@
 interface IInput {
-onChange: (value: string) => void;
+  onChange: (value: string) => void;
 }
 
 const Input = ({ onChange }: IInput) => {

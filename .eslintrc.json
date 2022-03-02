@@ -33,6 +33,7 @@
         "no-use-before-define": "off",
         "no-unused-expressions":"off",
         "implicit-arrow-linebreak":"off",
-        "no-empty-function":"off"
+        "no-empty-function":"off",
+        "no-unused-vars":"off"
     }
 }

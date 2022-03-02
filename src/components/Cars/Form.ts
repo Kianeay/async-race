@@ -1,5 +1,5 @@
-import { createCarApi, getCarApi, updateCarApi } from '../../api';
-import Button from '../Common/Button';
+import { createCarApi, getCarApi, updateCarApi } from '../../api/CarApi';
+import { Button } from '../Common/index';
 import { ColorSelect, Input } from '.';
 import createRandomCar from '../../utils/create-random-car';
 import createDispatchEvent from '../../utils/dispatch-event';

@@ -1,5 +1,5 @@
-import { getAllWinner, getAllWinnerCount } from '../../api';
-import Navbar from '../Common/Navbar';
+import { getAllWinnerCount } from '../../api/WinnerApi';
+import { Navbar } from '../Common/index';
 import Table from './Table';
 import changePageTitle from '../../utils/change-page-title';
 

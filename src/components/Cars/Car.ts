@@ -1,12 +1,10 @@
+import { driveCar, getCarVelocity, removeCarApi } from '../../api/CarApi';
 import {
   createWinner,
-  driveCar,
-  getCarVelocity,
   getWinner,
-  removeCarApi,
   removeWinner,
   updateWinner,
-} from '../../api';
+} from '../../api/WinnerApi';
 import createDispatchEvent from '../../utils/dispatch-event';
 import { Button, CarIcon } from '../Common/index';
 import FlagIcon from './FlagIcon';

@@ -1,4 +1,4 @@
-import { getCarsListApi } from '../../api';
+import { getCarsListApi } from '../../api/CarApi';
 import Car, { ICar } from './Car';
 import Button from '../Common/Button';
 
