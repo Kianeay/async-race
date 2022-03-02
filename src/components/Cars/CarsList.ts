@@ -2,10 +2,6 @@ import { getCarsListApi } from '../../api';
 import Car, { ICar } from './Car';
 import Button from '../Common/Button';
 
-interface ICarsLst {
-  totalCarsCount: number;
-}
-
 const CarsList = () => {
   const component = document.createElement('div');
   component.className = 'cars';
