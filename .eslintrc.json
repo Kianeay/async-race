@@ -30,6 +30,9 @@
         "no-useless-constructor": 0,
         "no-unused-vars": 0,
         "operator-linebreak":"off",
-        "object-curly-newline":"off"
+        "object-curly-newline":"off",
+        "no-use-before-define": "off",
+        "no-unused-expressions":"off",
+        "implicit-arrow-linebreak":"off"
     }
 }

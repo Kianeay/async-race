@@ -19,7 +19,6 @@ export default class View {
         break;
 
       default:
-
         break;
     }
     this.root.innerHTML = '';

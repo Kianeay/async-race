@@ -1,20 +1,18 @@
-import Controller from "./Controller";
+import Controller from './Controller';
 
 export interface IStore {
   [key: string]: any;
 }
 
 export default class Model {
-  private store: IStore = {
-    //default state
-  };
+  private store: IStore = {};
 
   constructor(private controller: Controller) {}
 
   getStore = () => this.store;
 
   setStore = (newState: any) => {
-    for (let key in newState) {
+    for (const key in newState) {
       this.store = { ...this.store, [key]: newState[key] };
     }
   };

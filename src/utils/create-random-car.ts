@@ -1,4 +1,3 @@
-/* eslint-disable implicit-arrow-linebreak */
 function getRandomIntInclusive(minNum: number, maxNum: number) {
   const min = Math.ceil(minNum);
   const max = Math.floor(maxNum);
