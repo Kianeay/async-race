@@ -46,7 +46,7 @@ module.exports = {
     },
     port: 5000,
     devMiddleware: {
-      publicPath: 'https://localhost:3000/dist/',
+      publicPath: 'https://localhost:5000/dist/',
     },
   },
 };
